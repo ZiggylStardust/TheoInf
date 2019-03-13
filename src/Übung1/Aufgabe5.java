@@ -4,12 +4,10 @@ import java.math.BigInteger;
 
 public class Aufgabe5 {
     public static void main(String[] args) {
-        //  System.out.println(f(19));
-        //System.out.println(f(2*19+1));
 
         for (int i = 6; i < 100; i++) {
 
-            System.out.println(i + "  " + (f(i) + f(2 * i + 1)));
+            System.out.println(i + "  " + (f2(i) + f2(2 * i + 1)));
         }
     }
 
@@ -40,11 +38,23 @@ public class Aufgabe5 {
             for(int k=2;k<n/2||run;k=k+2){
                 int exponent=k;
                 BigInteger calc=BigInteger.valueOf(i).multiply(BigInteger.ONE.shiftLeft(exponent)).add(BigInteger.ONE.shiftLeft(exponent-1).add(BigInteger.valueOf(-1)));
-                //if (calc<0){ System.err.println("long reicht nicht aus: "+n);System.exit(1);}
                 if(calc.compareTo(BigInteger.valueOf(n))==1) run=false;
                 if(calc.equals(BigInteger.valueOf(n))) return 0;
             }
         }
+        return 1;
+
+    }
+
+    /**
+     * 2n+1=k-->n=(k-1)/2
+     * @param n
+     * @return
+     */
+    public static int f2(int n){
+        int i=0;
+        for(;n%2==1;i++,n=(n-1)/2){}
+        if(i%2==0) return 0;
         return 1;
 
     }
