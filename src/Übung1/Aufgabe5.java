@@ -5,9 +5,9 @@ import java.math.BigInteger;
 public class Aufgabe5 {
     public static void main(String[] args) {
 
-        for (int i = 6; i < 1000; i++) {
+        for (int i = 64; i < 1000; i++) {
 
-            System.out.println(i + "  " + (f3(i) + f3(2 * i + 1)));
+            System.out.println(i + "  " + (f(i) + f(2 * i + 1)));
         }
     }
 
@@ -35,11 +35,11 @@ public class Aufgabe5 {
         if (n%2==0) return 1;
         for(int i=0;i<n;i++){
             boolean run=true;
-            for(int k=2;k<n/2||run;k=k+2){
+            for(int k=2;run;k=k+2){
                 int exponent=k;
-                BigInteger calc=BigInteger.valueOf(i).multiply(BigInteger.ONE.shiftLeft(exponent)).add(BigInteger.ONE.shiftLeft(exponent-1).add(BigInteger.valueOf(-1)));
-                if(calc.compareTo(BigInteger.valueOf(n))==1) run=false;
-                if(calc.equals(BigInteger.valueOf(n))) return 0;
+                long calc=i*(1l<<exponent)+(1l<<(exponent-1l))-1;
+                if(calc>n) run=false;
+                if(calc==n) return 0;
             }
         }
         return 1;
@@ -71,6 +71,7 @@ public class Aufgabe5 {
                 //if(calc.compareTo(BigInteger.valueOf(n))==1) run=false;
                 //if(calc.equals(BigInteger.valueOf(n))) return 0;
                 if(cacl3>n)run=false;
+                if(cacl3<0) System.out.println("error");
                 if(cacl3==n) return 1;
 
             }
